@@ -5,7 +5,7 @@ Supports:
 - Dynamic or static sizing of hero container
 - Network or local images
 
-![screen-shot-2017-03-31-at-11-3](https://cloud.githubusercontent.com/assets/6020066/24564115/a48c07a0-1605-11e7-964d-2293a4b72ee6.png)
+[Screen shot to come]
 
 ## Usage
 1. Install the repository
