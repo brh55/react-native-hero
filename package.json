@@ -1,0 +1,38 @@
+{
+  "name": "react-native-hero",
+  "version": "0.0.1",
+  "description": "A super duper react-native hero component",
+  "main": "./components/Hero.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Brandon Him",
+  "files": [
+    "/components",
+    "/styles",
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brh55/react-native-hero.git"
+  },
+  "keywords": [
+    "react-native",
+    "hero",
+    "banners",
+    "dynamic"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brh55/react-native-hero/issues"
+  },
+  "homepage": "https://github.com/brh55/react-native-hero#readme",
+  "devDependencies": {
+    "jest": "^19.0.2",
+    "react": "^15.4.2",
+    "react-native": "^0.42.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
