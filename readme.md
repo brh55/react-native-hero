@@ -18,7 +18,7 @@ Why not just nest it under `<Image>`? Well `react-native-hero` is purely an abst
     import Hero from 'react-native-hero';
     ```
 3. Declare the component in the render method of your component
-    ```js
+    ```jsx
     overlay() {
         return (
             <Text>Enjoy!</Text>
@@ -34,7 +34,7 @@ Why not just nest it under `<Image>`? Well `react-native-hero` is purely an abst
     }
     ```
 4. Blurred backgrounds? Simple, import [`react-native-blur`](https://github.com/react-native-community/react-native-blur) and you are good to go.
-   ```js
+   ```jsx
    overlay() {
        return (
            <BlurView blurType="light" blurAmount={10}>
