@@ -1,4 +1,4 @@
-# react-native-hero [![Travis](https://img.shields.io/travis/brh55/react-native-Hero.svg?style=flat-square)](https://travis-ci.org/brh55/react-native-Hero)
+# react-native-hero [![Travis](https://img.shields.io/travis/brh55/react-native-hero.svg?style=flat-square)](https://travis-ci.org/brh55/react-native-hero)
 > 📷 A super duper hero unit react-native component with support for dynamic images and sizing
 
 Why not just nest it under `<Image>`? Well `react-native-hero` is purely an abstraction on top of `<Image>Text</Image>`, however it includes a couple of useful things out of the box.
