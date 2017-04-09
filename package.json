@@ -8,9 +8,7 @@
   },
   "author": "Brandon Him",
   "files": [
-    "/components",
-    "/styles",
-    "index.js"
+    "/components"
   ],
   "repository": {
     "type": "git",

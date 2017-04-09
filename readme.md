@@ -1,11 +1,12 @@
-# react-native-hero [![Travis](https://img.shields.io/travis/brh55/react-native-Hero.svg?style=flat-square)](https://travis-ci.org/brh55/react-native-Hero)
+# react-native-hero [![Travis](https://img.shields.io/travis/brh55/react-native-hero.svg?style=flat-square)](https://travis-ci.org/brh55/react-native-hero)
 > 📷 A super duper hero unit react-native component with support for dynamic images and sizing
 
-Supports:
-- Dynamic or static sizing of hero container
-- Network or local images
+Why not just nest it under `<Image>`? Well `react-native-hero` is purely an abstraction on top of `<Image>Text</Image>`, however it includes a couple of useful things out of the box.
+- Dynamic sizing of the background image based on the content, no need to worry about text overflows
+- Support for remote images or local image
+- Statically defined height of the hero
 
-[Screen shot to come]
+![image](https://cloud.githubusercontent.com/assets/6020066/24824103/0f759968-1bbb-11e7-895f-ab4ac50dbcd4.png)
 
 ## Usage
 1. Install the repository
@@ -17,7 +18,7 @@ Supports:
     import Hero from 'react-native-hero';
     ```
 3. Declare the component in the render method of your component
-    ```js
+    ```jsx
     overlay() {
         return (
             <Text>Enjoy!</Text>
@@ -32,11 +33,20 @@ Supports:
         )
     }
     ```
-
+4. Blurred backgrounds? Simple, import [`react-native-blur`](https://github.com/react-native-community/react-native-blur) and you are good to go.
+   ```jsx
+   overlay() {
+       return (
+           <BlurView blurType="light" blurAmount={10}>
+               <Text style={style.type.h1}>Henry's Harry Beard</Text>
+               <Text style={style.type.h2}>The finest gear for a fellow hipster</Text>
+           </BlurView>
+    ```
+    
 ## Prop Types
 ### source
 #### Type: `string` or `module`
-A local or remote image, with support for images bundle with require (must set props.requireImage=true).
+A local or remote image, with support for images bundle with require *(must set props.requireImage=true)*.
 EX: `<Hero source={{uri: 'remotelocation'}}>` or `<Hero source={require('images/image1')} requireImage={true}`>
 
 ### renderOverlay
