@@ -1,5 +1,10 @@
 # react-native-hero [![Travis](https://img.shields.io/travis/brh55/react-native-hero.svg?style=flat-square)](https://travis-ci.org/brh55/react-native-hero)
-> 📷 A super duper hero unit react-native component with support for dynamic images and sizing
+> :metal: A super duper hero unit react-native component with support for dynamic images and sizing
+
+<p align="center">
+    <img src ="https://cloud.githubusercontent.com/assets/6020066/24824103/0f759968-1bbb-11e7-895f-ab4ac50dbcd4.png" />
+</p>
+
 
 Why not just nest it under `<Image>`? Well `react-native-hero` is a flexible abstraction on top of `<Image>Text</Image>`, however it includes a couple of useful things out of the box.
 - Dynamic sizing of the background image based on the content, no need to worry about text overflows
@@ -7,9 +12,7 @@ Why not just nest it under `<Image>`? Well `react-native-hero` is a flexible abs
 - Statically defined height of the hero
 - Support for color overlay with opacity selection
 
-![image](https://cloud.githubusercontent.com/assets/6020066/24824103/0f759968-1bbb-11e7-895f-ab4ac50dbcd4.png)
-
-## Usage
+## Basic Usage
 1. Install the repository
     ```bash
     $ npm install --save react-native-hero
@@ -34,34 +37,46 @@ Why not just nest it under `<Image>`? Well `react-native-hero` is a flexible abs
         )
     }
     ```
-4. Blurred backgrounds? Simple, import [`react-native-blur`](https://github.com/react-native-community/react-native-blur) and you are good to go.
-   ```jsx
-   overlay() {
-       return (
-           <BlurView blurType="light" blurAmount={10}>
-               <Text style={style.type.h1}>Henry's Harry Beard</Text>
-               <Text style={style.type.h2}>The finest gear for a fellow hipster</Text>
-           </BlurView>
-    ```
-5. Color Overlays? Simple, set `Hero.props.colorOverlay` to a [`react-native` color format](http://facebook.github.io/react-native/releases/0.43/docs/colors.html#colors), and set a desired opacity with `Hero.props.colorOpacity`.
-    ```jsx
-    render() {
-        return (
-            <Hero
-              source={{uri: 'http://helloworld.com/1.jpeg'}}
-              renderOverlay{() => this.overlay(this.props.data)}
-              colorOverlay="#000"
-              colorOpacity={0.7}/>
-        )
-    }
-    ```
+   
+## Advance Usage
+### Blurred backgrounds
+![image](https://cloud.githubusercontent.com/assets/6020066/24872727/3eaa2284-1dd3-11e7-94b4-1a63cb98b2ac.png)
 
-   ![image](https://cloud.githubusercontent.com/assets/6020066/24842132/f06b0b46-1d47-11e7-91d5-ac22aa4243d5.png)
+Import [`react-native-blur`](https://github.com/react-native-community/react-native-blur) and add it to your overlay.
+```jsx
+// Assuming props.renderOverlay renders with overlay()
+overlay() {
+   return (
+       <BlurView blurType="light" blurAmount={10}>
+           <Text style={style.type.h1}>Henry's Harry Beard</Text>
+           <Text style={style.type.h2}>The finest gear for a fellow hipster</Text>
+       </BlurView>
+    )
+}
+```
+
+
+### Color Overlays
+![image](https://cloud.githubusercontent.com/assets/6020066/24842132/f06b0b46-1d47-11e7-91d5-ac22aa4243d5.png)
+
+Set `Hero.props.colorOverlay` to a [`react-native` color format](http://facebook.github.io/react-native/releases/0.43/docs/colors.html#colors), and set a desired opacity with `Hero.props.colorOpacity`.
+
+```jsx
+render() {
+    return (
+        <Hero
+          source={{uri: 'http://helloworld.com/1.jpeg'}}
+          renderOverlay{() => this.overlay(this.props.data)}
+          colorOverlay="#000"
+          colorOpacity={0.7}/>
+    )
+}
+```
 
 ## Component Props
 | Props         | Type                                                                           | Description                                                                                                           |
 |---------------|--------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
-| source        | string OR module                                                               | A local or remote image, with support for images bundle with require *(must set props.requireImage=true)*. EX: `source='http://logo.jpg'` or `source=require('images/logo.jpg')`
+| source        | string or module                                                               | A local or remote image, with support for images bundle with require *(must set props.requireImage=true)*. EX: `source='http://logo.jpg'` or `source=require('images/logo.jpg')`
 | renderOverlay | func                                                                           | A function that renders the content to be placed on top of the hero unit, and colored overlay (if applicable).        |
 | colorOverlay  | [color](http://facebook.github.io/react-native/releases/0.43/docs/colors.html) | A colored overlay sitting below the rendered content overlay. Set the colorOverlay to a color to activate it.         |
 | colorOpacity  | num                                                                            | If colorOverlay is set, this sets the level of opacity. `**Default:** .30`                                            |
@@ -69,7 +84,7 @@ Why not just nest it under `<Image>`? Well `react-native-hero` is a flexible abs
 | minHeight     | num                                                                            | A statically defined height for the hero unit, overrides dynamic sizing based on content.                             |
 
 ## Contribute
-PR's are welcomed, just abide by rules listed within [contributing.json](http://github.com/brh55/contributing.json).
+PR's are welcomed and desired, just abide by rules listed within :squirrel: [contributing.json](http://github.com/brh55/contributing.json).
 
 ## License
 MIT © [Brandon Him](https://github.com/brh55/react-native-hero)
