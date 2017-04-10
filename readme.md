@@ -55,10 +55,10 @@ Why not just nest it under `<Image>`? Well `react-native-hero` is a flexible abs
         )
     }
     ```
-    
+
    ![image](https://cloud.githubusercontent.com/assets/6020066/24842132/f06b0b46-1d47-11e7-91d5-ac22aa4243d5.png)
 
-## Prop Types
+## Component Props
 | Props         | Type                                                                           | Description                                                                                                           |
 |---------------|--------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
 | source        | string OR module                                                               | A local or remote image, with support for images bundle with require *(must set props.requireImage=true)*. EX: `source='http://logo.jpg'` or `source=require('images/logo.jpg')`
