@@ -1,6 +1,6 @@
 {
   "name": "react-native-hero",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A super duper react-native hero component",
   "main": "./components/Hero.js",
   "scripts": {
