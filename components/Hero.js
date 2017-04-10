@@ -16,7 +16,9 @@ export default class Hero extends Component {
   static propTypes = {
     renderOverlay: React.PropTypes.func,
     resizeMode: React.PropTypes.string,
-    requireImage: React.PropTypes.bool
+    requireImage: React.PropTypes.bool,
+    colorOpacity: React.PropTypes.number,
+    minHeight: React.PropTypes.number
   };
 
   constructor(props) {
@@ -87,9 +89,12 @@ export default class Hero extends Component {
   render() {
     return (
       <View style={{opacity: this.state.opacity}}>
-        <Image source={this.state.source} resizeMode={this.state.resizeMode} style={{height: this.state.height, width: '100%'}}>
-          {this.renderHeroOverlay()}
-          {this.renderColorOverlay()}
+        <Image
+          source={this.state.source}
+          resizeMode={this.state.resizeMode}
+          style={{height: this.state.height, width: '100%'}}>
+            {this.renderHeroOverlay()}
+            {this.renderColorOverlay()}
         </Image>
       </View>
     )
