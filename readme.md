@@ -8,6 +8,7 @@
 
 Why not just nest it under `<Image>`? Well `react-native-hero` is a flexible abstraction on top of `<Image>Text</Image>`, however it includes a couple of useful things out of the box.
 - Dynamic sizing of the background image based on the content, no need to worry about text overflows
+- Full width sizing by device width, while supporting device rotation
 - Support for remote images or local image
 - Statically defined height of the hero
 - Support for color overlay with opacity selection
@@ -37,7 +38,7 @@ Why not just nest it under `<Image>`? Well `react-native-hero` is a flexible abs
         )
     }
     ```
-   
+
 ## Advance Usage
 ### Blurred backgrounds
 ![image](https://cloud.githubusercontent.com/assets/6020066/24872727/3eaa2284-1dd3-11e7-94b4-1a63cb98b2ac.png)
@@ -76,11 +77,11 @@ render() {
 ## Component Props
 | Props         | Type                                                                           | Description                                                                                                           |
 |---------------|--------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
-| source        | string or module                                                               | A local or remote image, with support for images bundle with require *(must set props.requireImage=true)*. EX: `source='http://logo.jpg'` or `source=require('images/logo.jpg')`
+| source        | object or module                                                               | A local or remote image, with support for images bundled with require. EX: `source={{ uri: 'http://logo.jpg' }}` or `source=require('images/logo.jpg')`
 | renderOverlay | func                                                                           | A function that renders the content to be placed on top of the hero unit, and colored overlay (if applicable).        |
 | colorOverlay  | [color](http://facebook.github.io/react-native/releases/0.43/docs/colors.html) | A colored overlay sitting below the rendered content overlay. Set the colorOverlay to a color to activate it.         |
 | colorOpacity  | num                                                                            | If colorOverlay is set, this sets the level of opacity. `**Default:** .30`                                            |
-| requireImage  | bool                                                                           | A boolean indicating if the source needs to be bundled with require.,`**Default:** false`                             |
+| fullWidth  | bool                                                                           | A boolean indicating if the hero unit should be sized the full width of the device. Setting to false will size it according to the contents size.`**Default:** true`                             |
 | minHeight     | num                                                                            | A statically defined height for the hero unit, overrides dynamic sizing based on content.                             |
 
 ## Contribute

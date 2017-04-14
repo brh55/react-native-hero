@@ -31,7 +31,6 @@ export default class Hero extends Component {
   }
 
   constructor(props) {
-    console.log(props);
     super(props);
 
     this.state = {
