@@ -1,2 +1,14 @@
 /node_modules
 npm-debug.log
+
+
+# OSX
+#
+.DS_Store
+
+# Example repo
+#
+example/ios/build/
+example/node_modules/
+example/npm-debug.log
+example/yarn-error.log
