@@ -9,23 +9,33 @@ const createPositionStyle = (zIndex=1) => ({
   zIndex
 });
 
+// a -> a
+const updateWidthState = (component, window) => {
+  if (!component) return;
+  component.setState({
+    width: window.width
+  });
+}
 // a, b -> b
-const setSource = (required, source) => (required) ? source : { uri: source };
-
 export default class Hero extends Component {
   static propTypes = {
     renderOverlay: React.PropTypes.func,
     resizeMode: React.PropTypes.string,
-    requireImage: React.PropTypes.bool,
     colorOpacity: React.PropTypes.number,
-    minHeight: React.PropTypes.number
+    minHeight: React.PropTypes.number,
+    fullWidth: React.PropTypes.bool
   };
 
+  static defaultProps = {
+    fullWidth: true
+  }
+
   constructor(props) {
+    console.log(props);
     super(props);
 
     this.state = {
-      source: setSource(this.props.requireImage, this.props.source),
+      source: this.props.source,
       opacity: 0,
       height: this.props.minHeight || undefined,
       resizeMode: this.props.resizeMode || 'cover'
@@ -35,7 +45,7 @@ export default class Hero extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.source !== this.props.source) {
       this.setState({
-        source: setSource(this.props.requireImage, this.props.source)
+        source: this.props.source
       });
     }
   };
@@ -68,12 +78,18 @@ export default class Hero extends Component {
 
     const updateViewHeight = (event) => {
       const overlayHeight = event.nativeEvent.layout.height;
+      const overlayWidth = event.nativeEvent.layout.width;
       if (self.props.minHeight) return;
-
-      if (overlayHeight !== this.state.height) {
+      if (overlayHeight !== self.state.height) {
         self.setState({
           height: overlayHeight
         });
+      }
+
+      // Initial width state set
+      if ((this.props.fullWidth === true) && (!self.state.width)) {
+        updateWidthState(self, Dimensions.get('window'));
+        Dimensions.addEventListener('change', (window, screen) => updateWidthState(self, window));
       }
     };
 
@@ -92,7 +108,7 @@ export default class Hero extends Component {
         <Image
           source={this.state.source}
           resizeMode={this.state.resizeMode}
-          style={{height: this.state.height, width: '100%'}}>
+          style={{height: this.state.height, width: (this.state.width || '100%') }}>
             {this.renderHeroOverlay()}
             {this.renderColorOverlay()}
         </Image>
