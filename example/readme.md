@@ -1,7 +1,7 @@
 # react-native-hero example
 This is a sample react-native application using the `react-native-hero`, demonstrating possible ways to customize the hero unit.
 
-![screen shot 2017-04-13 at 6 25 20 pm](https://cloud.githubusercontent.com/assets/6020066/25030044/0c017bc4-2077-11e7-8e23-ae6d5cb1837a.png)
+<img width="394" alt="screen shot 2017-04-13 at 6 39 20 pm" src="https://cloud.githubusercontent.com/assets/6020066/25030484/0028971c-207a-11e7-9ada-3574c350efd5.png">
 
 ## To run the example application:
 1. `cd react-native-hero/example`
