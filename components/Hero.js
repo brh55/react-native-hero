@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { Image, StyleSheet, View, Dimensions } from 'react-native';
+import PropTypes from 'prop-types';
 
 // a -> b
 const createPositionStyle = (zIndex=1) => ({
@@ -19,11 +20,11 @@ const updateWidthState = (component, window) => {
 // a, b -> b
 export default class Hero extends Component {
   static propTypes = {
-    renderOverlay: React.PropTypes.func,
-    resizeMode: React.PropTypes.string,
-    colorOpacity: React.PropTypes.number,
-    minHeight: React.PropTypes.number,
-    fullWidth: React.PropTypes.bool
+    renderOverlay: PropTypes.func,
+    resizeMode: PropTypes.string,
+    colorOpacity: PropTypes.number,
+    minHeight: PropTypes.number,
+    fullWidth: PropTypes.bool
   };
 
   static defaultProps = {
