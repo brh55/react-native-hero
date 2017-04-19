@@ -1,18 +1,18 @@
 {
   "name": "react-native-hero",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A super duper react-native hero component",
   "main": "./components/Hero.js",
   "scripts": {
     "test": "jest"
   },
-  "author": "Brandon Him",
+  "author": "Brandon Him <brandonhim@live.com>",
   "files": [
     "/components"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brh55/react-native-hero.git"
+    "url": "https://github.com/brh55/react-native-hero.git"
   },
   "keywords": [
     "react-native",
@@ -30,6 +30,10 @@
     "jest": "^19.0.2",
     "react": "^15.4.2",
     "react-native": "^0.42.3"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
   },
   "jest": {
     "preset": "react-native"
