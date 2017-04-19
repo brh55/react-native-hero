@@ -1,5 +1,5 @@
-# react-native-hero [![Travis](https://img.shields.io/travis/brh55/react-native-hero.svg?style=flat-square)](https://travis-ci.org/brh55/react-native-hero)
-> :metal: A super duper hero unit react-native component with support for dynamic images and sizing
+# react-native-hero [![Travis](https://img.shields.io/travis/brh55/react-native-hero.svg?style=flat-square)](https://travis-ci.org/brh55/react-native-hero) [![David](https://img.shields.io/david/dev/brh55/react-native-hero.svg?style=flat-square)](https://david-dm.org/brh55/react-native-hero?type=dev) [![npm](https://img.shields.io/npm/dt/react-native-hero.svg?style=flat-square)](https://www.npmjs.com/package/react-native-hero)
+> :metal: A super duper hero unit react-native component with support for dynamic image, dynamic sizing, color overlays, and more.
 
 <p align="center">
     <img src ="https://cloud.githubusercontent.com/assets/6020066/24824103/0f759968-1bbb-11e7-895f-ab4ac50dbcd4.png" />
