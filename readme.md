@@ -85,7 +85,10 @@ render() {
 | minHeight     | num                                                                            | A statically defined height for the hero unit, overrides dynamic sizing based on content.                             |
 
 ## Contribute
-PR's are welcomed and desired, just abide by rules listed within :squirrel: [contributing.json](http://github.com/brh55/contributing.json).
+PR's are welcomed and desired, just abide by rules listed within :squirrel: [contributing.json](http://github.com/brh55/contributing.json). 
+
+### Beginners
+Not sure where to start, or a beginner? No problemo! Take a look at the [issues page](https://github.com/brh55/react-native-hero/issues) for `low-hanging` or `beginner-friendly` labels as an easy ways to start contributing.
 
 ## License
 MIT © [Brandon Him](https://github.com/brh55/react-native-hero)
