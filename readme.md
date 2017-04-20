@@ -77,11 +77,11 @@ render() {
 ## Component Props
 | Props         | Type                                                                           | Description                                                                                                           |
 |---------------|--------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
-| source        | object or module                                                               | A local or remote image, with support for images bundled with require. EX: `source={{ uri: 'http://logo.jpg' }}` or `source=require('images/logo.jpg')`
+| source        | object or module                                                               | A local or remote image, with support for images bundled with require. **EX:** `source={{ uri: 'http://logo.jpg' }}` or `source=require('images/logo.jpg')`
 | renderOverlay | func                                                                           | A function that renders the content to be placed on top of the hero unit, and colored overlay (if applicable).        |
 | colorOverlay  | [color](http://facebook.github.io/react-native/releases/0.43/docs/colors.html) | A colored overlay sitting below the rendered content overlay. Set the colorOverlay to a color to activate it.         |
-| colorOpacity  | num                                                                            | If colorOverlay is set, this sets the level of opacity. `**Default:** .30`                                            |
-| fullWidth  | bool                                                                           | A boolean indicating if the hero unit should be sized the full width of the device. Setting to false will size it according to the contents size.`**Default:** true`                             |
+| colorOpacity  | num                                                                            | If colorOverlay is set, this sets the level of opacity. **Default: .30**                                            |
+| fullWidth  | bool                                                                           | A boolean indicating if the hero unit should be sized the full width of the device. Setting to false will size it according to the contents size.**Default: true**                             |
 | minHeight     | num                                                                            | A statically defined height for the hero unit, overrides dynamic sizing based on content.                             |
 
 ## Contribute
