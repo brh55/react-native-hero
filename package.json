@@ -28,7 +28,7 @@
   "homepage": "https://github.com/brh55/react-native-hero#readme",
   "devDependencies": {
     "jest": "^19.0.2",
-    "react": "^16.0.0",
+    "react": "16.0.0-alpha.6",
     "react-native": "^0.43.0"
   },
   "peerDependencies": {
