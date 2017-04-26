@@ -4,20 +4,20 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, View, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
-// a -> b
+// createPositionStyle :: Number -> Object
 const createPositionStyle = (zIndex=1) => ({
   top: 0,
   zIndex
 });
 
-// a -> a
+// updateWidthState :: Component, Window -> _
 const updateWidthState = (component, window) => {
   if (!component) return;
   component.setState({
     width: window.width
   });
 }
-// a, b -> b
+
 export default class Hero extends Component {
   static propTypes = {
     renderOverlay: PropTypes.func,
@@ -89,7 +89,9 @@ export default class Hero extends Component {
       // Initial width state set
       if ((this.props.fullWidth === true) && (!self.state.width)) {
         updateWidthState(self, Dimensions.get('window'));
-        Dimensions.addEventListener('change', (window, screen) => updateWidthState(self, window));
+	// This requires RN ^0.43 + React ^16, may consider alternative updating method for better
+	// backwards compatability
+        Dimensions.addEventListener('change', (window) => updateWidthState(self, window));
       }
     };
 
