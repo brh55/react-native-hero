@@ -32,7 +32,7 @@
     "react-native": "^0.43.0"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
+    "react": "*",
     "react-native": "^43.0.0"
   },
   "jest": {
