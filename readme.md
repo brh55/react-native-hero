@@ -24,20 +24,20 @@ Why not just nest it under `<Image>`? Well `react-native-hero` is a flexible abs
     ```
 3. Declare the component in the render method of your component
     ```jsx
-    overlay() {
-        return (
-            <Text>Enjoy!</Text>
-        )
-    }
-
     render() {
         return (
             <Hero
               source={{uri: 'http://helloworld.com/1.jpeg'}}
-              renderOverlay{() => this.overlay(this.props.data)}/>
+              renderOverlay{() => (
+                <View>
+                    <Text>React Native Hero!</Text>
+                    <Text>Is super duper, cool!</Text>
+                </View>
+              )} />
         )
     }
     ```
+4. Want more examples or a better demo? Take a look at the [example app](/tree/master/example).
 
 ## Advance Usage
 ### Blurred backgrounds
