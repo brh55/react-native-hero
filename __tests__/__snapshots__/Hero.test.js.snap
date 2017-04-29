@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SNAPSHOT: All functionality should match prev snapshot 1`] = `
+<View
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+>
+  <Image
+    resizeMode="cover"
+    source={
+      Object {
+        "uri": "https://catsarethebest.com/cat1",
+      }
+    }
+    style={
+      Object {
+        "height": 1000,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+          },
+          Object {
+            "top": 0,
+            "zIndex": 2,
+          },
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        React Native Hero
+      </Text>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "red",
+            "height": 1000,
+            "opacity": 0.4,
+            "width": "100%",
+          },
+          Object {
+            "top": 0,
+            "zIndex": 1,
+          },
+          Object {
+            "position": "absolute",
+          },
+        ]
+      }
+    />
+  </Image>
+</View>
+`;

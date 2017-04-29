@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, View, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
-// createPositionStyle :: Number -> Object
-const createPositionStyle = (zIndex=1) => ({
+// _createPositionStyle :: Number -> Object
+export const _createPositionStyle = (zIndex=1) => ({
   top: 0,
   zIndex
 });
@@ -60,9 +60,9 @@ export default class Hero extends Component {
     let overlayStyles = [{
       height: this.state.height,
       width: '100%',
-      backgroundColor: this.props.colorOverlay,
+      backgroundColor: this.props.colorOverlay || 'transparent',
       opacity: this.props.colorOpacity || .30
-    }, createPositionStyle(1), { position: 'absolute'}];
+    }, _createPositionStyle(1), { position: 'absolute'}];
 
     return (this.props.colorOverlay) ?
       <View style={overlayStyles}></View> :
@@ -73,7 +73,7 @@ export default class Hero extends Component {
     const self = this;
     const transparentBg = { backgroundColor: 'transparent' };
     const contentStyles = (this.props.colorOverlay) ?
-      [transparentBg, createPositionStyle(2)] :
+      [transparentBg, _createPositionStyle(2)] :
       transparentBg;
 
     const updateViewHeight = (event) => {
