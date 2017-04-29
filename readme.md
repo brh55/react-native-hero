@@ -46,13 +46,16 @@ Why not just nest it under `<Image>`? Well `react-native-hero` is a flexible abs
 Import [`react-native-blur`](https://github.com/react-native-community/react-native-blur) and add it to your overlay.
 ```jsx
 // Assuming props.renderOverlay renders with overlay()
-overlay() {
-   return (
-       <BlurView blurType="light" blurAmount={10}>
-           <Text style={style.type.h1}>Henry's Harry Beard</Text>
-           <Text style={style.type.h2}>The finest gear for a fellow hipster</Text>
-       </BlurView>
-    )
+ <Hero
+    source={{uri: 'http://helloworld.com/1.jpeg'}}
+    renderOverlay{() => (
+       <BlurView blurType="dark" blurAmount={10}>
+           <Text style={style.type.h1}>La Catalana<Text>
+           <Text style={style.type.h2}>tapas, spanish, wine_bars</Text>
+           <Text style={style.loc}>0.74 Miles</Text>
+           <Text style={style.address}>San Jose, CA</Text>
+       </BlurView> )} 
+  />
 }
 ```
 
@@ -67,9 +70,13 @@ render() {
     return (
         <Hero
           source={{uri: 'http://helloworld.com/1.jpeg'}}
-          renderOverlay{() => this.overlay(this.props.data)}
-          colorOverlay="#000"
-          colorOpacity={0.7}/>
+          renderOverlay{() => (
+            <Text style={style.type.h1}>Parcel 104<Text>
+            <Text style={style.type.h2}>newamerican, wine_bars</Text>
+            <Text style={style.loc}>1.72 Miles</Text>
+            <Text style={style.address}>Santa Clara, CA</Text> )}
+          colorOverlay="#1bb4d8"
+          colorOpacity={0.5}/>
     )
 }
 ```
