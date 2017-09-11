@@ -28,7 +28,7 @@ Why not just nest it under `<Image>`? Well `react-native-hero` is a flexible abs
         return (
             <Hero
               source={{uri: 'http://helloworld.com/1.jpeg'}}
-              renderOverlay{() => (
+              renderOverlay={() => (
                 <View>
                     <Text>React Native Hero!</Text>
                     <Text>Is super duper, cool!</Text>
@@ -48,7 +48,7 @@ Import [`react-native-blur`](https://github.com/react-native-community/react-nat
 // Assuming props.renderOverlay renders with overlay()
  <Hero
     source={{uri: 'http://helloworld.com/1.jpeg'}}
-    renderOverlay{() => (
+    renderOverlay={() => (
        <BlurView blurType="dark" blurAmount={10}>
            <Text style={style.type.h1}>La Catalana<Text>
            <Text style={style.type.h2}>tapas, spanish, wine_bars</Text>
@@ -70,7 +70,7 @@ render() {
     return (
         <Hero
           source={{uri: 'http://helloworld.com/1.jpeg'}}
-          renderOverlay{() => (
+          renderOverlay={() => (
             <Text style={style.type.h1}>Parcel 104<Text>
             <Text style={style.type.h2}>newamerican, wine_bars</Text>
             <Text style={style.loc}>1.72 Miles</Text>
