@@ -39,6 +39,7 @@ exports[`SNAPSHOT: All functionality should match prev snapshot 1`] = `
       <Text
         accessible={true}
         allowFontScaling={true}
+        disabled={false}
         ellipsizeMode="tail"
       >
         React Native Hero

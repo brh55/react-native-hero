@@ -12,6 +12,7 @@ Why not just nest it under `<Image>`? Well `react-native-hero` is a flexible abs
 - Support for remote images or local image
 - Statically defined height of the hero
 - Support for color overlay with opacity selection
+- Support to use any custom third-party image component
 
 ## Basic Usage
 1. Install the repository
@@ -81,18 +82,51 @@ render() {
 }
 ```
 
+### Custom Image Component
+There may be times when you want to utilize a third-party image component such as [fast-image](https://github.com/DylanVann/react-native-fast-image). `react-native-hero` allows a custom component to be used in place of the default `<Image>`, the only requirement is a custom component following the standard `<Image>` interface. In addition, you can also pass along custom properties to the component through the `customImageProps` attribute.
+
+**Example: Using react-native-fast-image**
+```jsx
+import FastImage from 'react-native-fast-image';
+
+const fastProps = {
+    resizeMode: FastImage.resizeMode.contain
+};
+
+render() {
+    return (
+        <Hero
+           source={{uri: 'http://helloworld.com/1.jpeg'}}
+           renderOverlay{() => (
+             <Text style={style.type.h1}>Parcel 104<Text>
+             <Text style={style.type.h2}>newamerican, wine_bars</Text>
+             <Text style={style.loc}>1.72 Miles</Text>
+             <Text style={style.address}>Santa Clara, CA</Text> )}
+           colorOverlay="#1bb4d8"
+           colorOpacity={0.5}
+           customImageComponent={FastImage}
+           customImageProps={fastProps}
+         />
+    )
+}
+```
+
 ## Component Props
-| Props         | Type                                                                           | Description                                                                                                           |
-|---------------|--------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
-| source        | object or module                                                               | A local or remote image, with support for images bundled with require. **EX:** `source={{ uri: 'http://logo.jpg' }}` or `source=require('images/logo.jpg')`
-| renderOverlay | func                                                                           | A function that renders the content to be placed on top of the hero unit, and colored overlay (if applicable).        |
-| colorOverlay  | [color](http://facebook.github.io/react-native/releases/0.43/docs/colors.html) | A colored overlay sitting below the rendered content overlay. Set the colorOverlay to a color to activate it.         |
-| colorOpacity  | num                                                                            | If colorOverlay is set, this sets the level of opacity. **Default: .30**                                            |
-| fullWidth  | bool                                                                           | A boolean indicating if the hero unit should be sized the full width of the device. Setting to false will size it according to the contents size.**Default: true**                             |
-| minHeight     | num                                                                            | A statically defined height for the hero unit, overrides dynamic sizing based on content.                             |
+| Props                | Type                                                                           | Description                                                                                                                                                                |
+|----------------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| source               | object or module                                                               | A local or remote image, with support for images bundled with require. **EX:** `source={{ uri: 'http://logo.jpg' }}` or `source=require('images/logo.jpg')`                |
+| renderOverlay        | func                                                                           | A function that renders the content to be placed on top of the hero unit, and colored overlay (if applicable).                                                             |
+| colorOverlay         | [color](http://facebook.github.io/react-native/releases/0.43/docs/colors.html) | A colored overlay sitting below the rendered content overlay. Set the colorOverlay to a color to activate it.                                                              |
+| colorOpacity         | num                                                                            | If colorOverlay is set, this sets the level of opacity. **Default: .30**                                                                                                   |
+| fullWidth            | bool                                                                           | A boolean indicating if the hero unit should be sized the full width of the device. Setting to false will size it according to the contents size.**Default: true**         |
+| minHeight            | num                                                                            | A statically defined height for the hero unit, overrides dynamic sizing based on content.                                                                                  |
+| customImageComponent | `React.Component`                                                              | Use a custom component to be rendered for the Image. This will work properly, as long as the component follows the standard interface of the react-native image component. |
+| customImageProps     | object                                                                         | Pass along additional properties to a props.customImageComponent.                                                                                                          |
 
 ## Contribute
-PR's are welcomed and desired, just abide by rules listed within :squirrel: [contributing.json](http://github.com/brh55/contributing.json). 
+👷🏽👷🏻‍♀️🐕
+
+PR's are welcomed and desired, just abide by rules listed within [contributing.json](http://github.com/brh55/contributing.json). 
 
 ### Beginners
 Not sure where to start, or a beginner? No problemo! Take a look at the [issues page](https://github.com/brh55/react-native-hero/issues) for `low-hanging` or `beginner-friendly` labels as an easy ways to start contributing.

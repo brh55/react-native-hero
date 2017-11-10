@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, View, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 
+import Injector from 'react-native-injectable-component';
+
 // _createPositionStyle :: Number -> Object
 export const _createPositionStyle = (zIndex=1) => ({
   top: 0,
@@ -11,6 +13,7 @@ export const _createPositionStyle = (zIndex=1) => ({
 // updateWidthState :: Component, Window -> _
 const updateWidthState = (component, window) => {
   if (!component) return;
+
   component.setState({
     width: window.width
   });
@@ -22,7 +25,9 @@ export default class Hero extends Component {
     resizeMode: PropTypes.string,
     colorOpacity: PropTypes.number,
     minHeight: PropTypes.number,
-    fullWidth: PropTypes.bool
+    fullWidth: PropTypes.bool,
+    customImageComponent: PropTypes.func,
+    customImageProps: PropTypes.object
   };
 
   static defaultProps = {
@@ -87,8 +92,8 @@ export default class Hero extends Component {
       // Initial width state set
       if ((this.props.fullWidth === true) && (!self.state.width)) {
         updateWidthState(self, Dimensions.get('window'));
-	// This requires RN ^0.43 + React ^16, may consider alternative updating method for better
-	// backwards compatability
+        // This requires RN ^0.43 + React ^16, may consider alternative updating method for better
+        // backwards compatability
         Dimensions.addEventListener('change', (window) => updateWidthState(self, window));
       }
     };
@@ -102,16 +107,26 @@ export default class Hero extends Component {
     );
   };
 
-  render() {
+    render() {
+      const imageProps = {
+        source: this.state.source,
+        resizeMode: this.state.resizeMode,
+        style: {
+          height: this.state.height,
+          width: (this.state.width || '100%')
+        }
+      };
+
     return (
       <View style={{opacity: this.state.opacity}}>
-        <Image
-          source={this.state.source}
-          resizeMode={this.state.resizeMode}
-          style={{height: this.state.height, width: (this.state.width || '100%') }}>
+        <Injector
+          defaultComponent={Image}
+          defaultProps={imageProps}
+          injectant={this.props.customImageComponent}
+          injectantProps={this.props.customImageProps}>
             {this.renderHeroOverlay()}
             {this.renderColorOverlay()}
-        </Image>
+        </Injector>
       </View>
     )
   };
