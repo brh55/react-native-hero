@@ -85,6 +85,7 @@ export default class Hero extends Component {
 		const updateViewHeight = (event) => {
 			const overlayHeight = event.nativeEvent.layout.height;
 			const overlayWidth = event.nativeEvent.layout.width;
+
 			if (self.props.minHeight) return;
 			if (overlayHeight !== self.state.height) {
 				self.setState({

@@ -5,117 +5,141 @@ import Hero, { _createPositionStyle } from '../components/Hero';
 import renderer from 'react-test-renderer';
 
 const imageUrl = 'https://catsarethebest.com/cat1';
-const overlayTpl =
-      <View>
+const overlayTpl = (
+	<View>
       <Text>React Native Hero</Text>
       <Text>Testing!</Text>
-      </View>;
+    </View>
+);
+
+
+const helpers = {
+	getHeroContent: tree => tree.children[0].children[0],
+	getHeroImage: tree => tree.children[1],
+	overlay: {
+		getOverlay: tree => tree.children[0],
+		getHeroImage: tree => tree.children[2],
+		getHeroContent: tree => tree.children[1].children[0]
+	}
+};
 
 test('MAIN: Render correctly and overlay contains correct content', () => {
-  const tree = renderer.create(
-    <Hero
-    source={{uri: imageUrl}}
-    renderOverlay={() => overlayTpl} />
-  ).toJSON();
+	// Tree Render ----
+	// <View>
+	//    <ContentOverlay />
+	//    <SwappableImageComponent />
+	// </View>
+	const tree = renderer.create(
+		<Hero
+		  source={{uri: imageUrl}}
+		  renderOverlay={() => overlayTpl} />
+	).toJSON();
 
-  const imageParent = tree.children[0];
-  // First child should be a Image wrapper
-  expect(imageParent.type).toBe('Image');
-  expect(imageParent.props.source).toEqual({ uri: imageUrl });
-  // Default 100% width of Parent
-  expect(imageParent.props.style.width).toBe('100%');
-  // No color props set, so only overlay() content should be the only child
-  expect(imageParent.children.length).toBe(1);
+	// Contains only the overlay and the image
+	const wrapper = tree.children;
+	expect(wrapper.length).toEqual(2);
 
-  const overlay = imageParent.children[0].children[0];
-  expect(overlay.type).toBe('View');
-  // Text elements of the view
-  expect(overlay.children.length).toBe(2);
+	const contentWrapper = tree.children[0];
+	expect(contentWrapper.props.style[1].zIndex).toEqual(2);
+	expect(contentWrapper.props.style[1].position).toEqual("absolute");
+
+	const heroContent = helpers.getHeroContent(tree);
+	// Text elements of the view
+	// 	<View>
+    //    <Text>React Native Hero</Text>
+    //    <Text>Testing!</Text>
+    // </View>
+	expect(heroContent.type).toBe('View');
+	expect(heroContent.children.length).toBe(2);
+	expect(heroContent.children[0].type).toEqual("Text");
+
+	const heroImage = helpers.getHeroImage(tree);
+	expect(heroImage.type).toEqual("Image");
+	expect(heroImage.props.source).toEqual({ uri: imageUrl });
+	expect(heroImage.props.style.width).toBe('100%');
 });
 
 test('MAIN: Render with a static image', () => {
-  const tree = renderer.create(
-    <Hero
-      source={require('../__assets__/lion-sample.jpg')}
-      renderOverlay={() => overlayTpl} />
-  ).toJSON();
+	const tree = renderer.create(
+		<Hero
+		  source={require('./__assets__/lion-sample.jpg')}
+		  renderOverlay={() => overlayTpl} />
+	).toJSON();
 
-  const imageParent = tree.children[0];
-  expect(imageParent.type).toBe('Image');
-  expect(imageParent.props.source).toBe(1);
+	const imageParent = helpers.getHeroImage(tree);
+	expect(imageParent.type).toBe('Image');
+	expect(imageParent.props.source.testUri).toEqual('../../../__tests__/__assets__/lion-sample.jpg');
 });
 
 test('PROPS: Props.minHeight should override the height', () => {
-  const tree = renderer.create(
-    <Hero
-      source={{uri: imageUrl}}
-      renderOverlay={() => overlayTpl}
-      minHeight={1000} />
+	const tree = renderer.create(
+		<Hero
+		  source={{uri: imageUrl}}
+		  renderOverlay={() => overlayTpl}
+		  minHeight={1000} />
     ).toJSON();
 
-  const imageParent = tree.children[0];
-  expect(imageParent.props.style.height).toBe(1000)
+	const imageParent = helpers.getHeroImage(tree);
+	expect(imageParent.props.style.height).toBe(1000)
 });
 
 test('PROPS: Props.fullWidth should default to state updates', () => {
-  const tree = renderer.create(
-    <Hero
-      source={{uri: imageUrl}}
-      renderOverlay={() => overlayTpl}
-    fullWidth={false} />
+	const tree = renderer.create(
+		<Hero
+		  source={{uri: imageUrl}}
+		  renderOverlay={() => overlayTpl}
+		  fullWidth={false} />
     ).toJSON();
 
-  const imageParent = tree.children[0];
-  expect(imageParent.props.style.fullWidth).toBeUndefined;
+	const imageParent = helpers.getHeroImage(tree);
+	expect(imageParent.props.style.fullWidth).toBeUndefined;
 });
 
 test('PROPS: Color overlay', () => {
-  const tree = renderer.create(
-    <Hero
-      source={{uri: imageUrl}}
-      renderOverlay={() => overlayTpl}
-      colorOverlay={'red'}
-      colorOpacity={.40}/>
+	const tree = renderer.create(
+		<Hero
+		  source={{uri: imageUrl}}
+		  renderOverlay={() => overlayTpl}
+		  colorOverlay={'red'}
+		  colorOpacity={.40}/>
     ).toJSON();
 
-  const imageParent = tree.children[0];
-  const bgImageContent = imageParent.children;
+	const imageParent = helpers.overlay.getHeroImage(tree);
+	const bgImageContent = helpers.overlay.getHeroContent(tree);
 
-  // The content overlay [0] and the color overlay [1]
-  // should exist
-  expect(bgImageContent.length).toBe(2);
+	const colorOverlay = helpers.overlay.getOverlay(tree);
+	const colorOverlayMainStyle = colorOverlay.props.style[0];
+	expect(colorOverlayMainStyle.backgroundColor).toBe('red');
+	// Needs to be 100%
+	expect(colorOverlayMainStyle.width).toBe('100%');
+	// Will inheriet on state change, so must not be defined
+	expect(colorOverlayMainStyle.height).toBeUndefined;
 
-  const colorOverlay = bgImageContent[1];
-  const colorOverlayMainStyle = colorOverlay.props.style[0];
-  expect(colorOverlayMainStyle.backgroundColor).toBe('red');
-  // Needs to be 100%
-  expect(colorOverlayMainStyle.width).toBe('100%');
-  // Will inheriet on state change, so must not be defined
-  expect(colorOverlayMainStyle.height).toBeUndefined;
-
-  // Needs to be placed on top of content: z-1 + absolute
-  expect(colorOverlay.props.style[1].zIndex).toBe(1)
-  expect(colorOverlay.props.style[2].position).toBe('absolute')
+	// Needs to be placed on top of content: z-1 + absolute
+	expect(colorOverlay.props.style[1].zIndex).toBe(1)
+	expect(colorOverlay.props.style[1].position).toBe('absolute')
 });
 
 
 test('PRIVATE FUNC: createPositionStyle should create a style', () => {
-  expect(_createPositionStyle(2)).toEqual({
-    top: 0,
-    zIndex: 2
-  });
+	expect(_createPositionStyle(2)).toEqual({
+		top: 0,
+		zIndex: 2,
+		left: 0,
+		position: 'absolute'
+	});
 });
 
 
 test('SNAPSHOT: All functionality should match prev snapshot', () => {
-  const tree = renderer.create(
-       <Hero
-     source={{uri: imageUrl}}
-    renderOverlay={() => <Text>React Native Hero</Text>}
-       colorOverlay={'red'}
-    colorOpacity={.40}
-    fullWidth={false}
-    minHeight={1000} />
-  ).toJSON();
-  expect(tree).toMatchSnapshot();
+	const tree = renderer.create(
+		<Hero
+		  source={{uri: imageUrl}}
+		  renderOverlay={() => <Text>React Native Hero</Text>}
+		  colorOverlay={'red'}
+		  colorOpacity={.40}
+		  fullWidth={false}
+		  minHeight={1000} />
+	).toJSON();
+	expect(tree).toMatchSnapshot();
 });
