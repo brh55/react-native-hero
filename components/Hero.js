@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet, View, Dimensions } from 'react-native';
+import { Image, StyleSheet, View, Dimensions, Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 import Injector from 'react-native-injectable-component';
 
 // _createPositionStyle :: Number -> Object
-export const _createPositionStyle = (zIndex=1) => ({
+export const _createPositionStyle = (zIndex = 1) => ({
 	top: 0,
-	zIndex
+	left: 0,
+	zIndex,
+	position: 'absolute'
 });
 
 // updateWidthState :: Component, Window -> _
@@ -60,12 +62,15 @@ export default class Hero extends Component {
 	};
 
 	renderColorOverlay() {
-		let overlayStyles = [{
-			height: this.state.height,
-			width: '100%',
-			backgroundColor: this.props.colorOverlay || 'transparent',
-			opacity: this.props.colorOpacity || .30
-		}, _createPositionStyle(1), { position: 'absolute'}];
+		let overlayStyles = [
+			{
+				height: this.state.height,
+				width: '100%',
+				backgroundColor: this.props.colorOverlay || 'transparent',
+				opacity: this.props.colorOpacity || .30
+			},
+			_createPositionStyle(1)
+		];
 
 		return (this.props.colorOverlay) ?
 			<View style={overlayStyles}></View> :
@@ -75,9 +80,7 @@ export default class Hero extends Component {
 	renderHeroOverlay() {
 		const self = this;
 		const transparentBg = { backgroundColor: 'transparent' };
-		const contentStyles = (this.props.colorOverlay) ?
-			  [transparentBg, _createPositionStyle(2)] :
-			  transparentBg;
+		const contentStyles = [transparentBg, _createPositionStyle(2)];
 
 		const updateViewHeight = (event) => {
 			const overlayHeight = event.nativeEvent.layout.height;
@@ -92,8 +95,6 @@ export default class Hero extends Component {
 			// Initial width state set
 			if ((this.props.fullWidth === true) && (!self.state.width)) {
 				updateWidthState(self, Dimensions.get('window'));
-				// This requires RN ^0.43 + React ^16, may consider alternative updating method for better
-				// backwards compatability
 				Dimensions.addEventListener('change', (window) => updateWidthState(self, window));
 			}
 		};
@@ -128,6 +129,6 @@ export default class Hero extends Component {
 				injectantProps={this.props.customImageProps}>
 			  </Injector>
 			</View>
-		)
+		);
 	};
 }
