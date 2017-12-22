@@ -1,6 +1,6 @@
 {
 	"name": "react-native-hero",
-	"version": "0.2.1",
+	"version": "0.3.0",
 	"description": " A super duper hero unit react-native component with support for dynamic image, dynamic sizing, color overlays, and more.",
 	"main": "./components/Hero.js",
 	"scripts": {
