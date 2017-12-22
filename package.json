@@ -1,6 +1,6 @@
 {
 	"name": "react-native-hero",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": " A super duper hero unit react-native component with support for dynamic image, dynamic sizing, color overlays, and more.",
 	"main": "./components/Hero.js",
 	"scripts": {
@@ -29,16 +29,17 @@
 	"devDependencies": {
 		"babel-jest": "^21.0.0",
 		"babel-preset-react-native": "^4.0.0",
+		"react": "16.0.0",
+		"react-native": "0.51.0",
 		"jest": "^19.0.2",
 		"jest-cli": "^21.0.0",
 		"jest-react-native": "^18.0.0",
-		"react": "16.0.0-alpha.12",
-		"react-native": "^0.45.0",
 		"react-test-renderer": "^16.0.0-alpha.12"
 	},
 	"peerDependencies": {
-		"react": "*",
-		"react-native": "^0.45.0"
+		"react": "16.0.0",
+		"react-native": "0.51.0",
+		"prop-types": "^15.5.10"
 	},
 	"dependencies": {
 		"prop-types": "^15.5.8",
