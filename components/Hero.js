@@ -50,7 +50,7 @@ export default class Hero extends Component {
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.source !== this.props.source) {
 			this.setState({
-				source: this.props.source
+				source: nextProps.source
 			});
 		}
 	};
